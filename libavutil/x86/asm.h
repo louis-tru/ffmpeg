@@ -73,11 +73,11 @@ typedef int x86_reg;
 #endif
 
 #if defined(__ANDROID__)
-#if !defined(_M_X64) && !defined(__x86_64__) && (defined(_M_IX86) || defined(__i386__))
+#if defined(__clang__) && ARCH_X86_32
 # undef HAVE_EBP_AVAILABLE
 # define HAVE_EBP_AVAILABLE 0
 #endif
-#endif
+
 
 #define HAVE_7REGS (ARCH_X86_64 || (HAVE_EBX_AVAILABLE && HAVE_EBP_AVAILABLE))
 #define HAVE_6REGS (ARCH_X86_64 || (HAVE_EBX_AVAILABLE || HAVE_EBP_AVAILABLE))
