@@ -17,7 +17,7 @@
 		'type': 'none',
 		'actions': [{
 			'action_name': 'FFmpeg_compile',
-			'inputs': [ 'config.h' ],
+			'inputs': [ 'RELEASE', 'config.h' ],
 			'outputs': [ '<(ff_product_path)' ],
 			'conditions': [
 				['media==1', {
