@@ -77,6 +77,7 @@ typedef int x86_reg;
 # undef HAVE_EBP_AVAILABLE
 # define HAVE_EBP_AVAILABLE 0
 #endif
+#endif
 
 
 #define HAVE_7REGS (ARCH_X86_64 || (HAVE_EBX_AVAILABLE && HAVE_EBP_AVAILABLE))
