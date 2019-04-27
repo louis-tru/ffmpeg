@@ -54,13 +54,13 @@
 			'libavcodec/avcodec.h',
 		],
 		'link_settings': {
-			'libraries': [ 
+			'libraries': [
 				'<(ff_product_path)',
 			]
 		},
 		'conditions': [
 			['os in "ios osx"', {
-				'link_settings': { 
+				'link_settings': {
 					'libraries': [
 						'$(SDKROOT)/System/Library/Frameworks/AudioToolbox.framework',
 						'$(SDKROOT)/System/Library/Frameworks/CoreVideo.framework',
@@ -72,12 +72,14 @@
 					],
 				},
 			}],
+			['os=="android"', {
+				'link_settings': {
+					'libraries': [ '-lz' ],
+				},
+			}],
 			['os=="linux"', {
 				'link_settings': {
-					'libraries': [
-						'-lbz2',
-						'-lz',
-					],
+					'libraries': [ '-lbz2', '-lz' ],
 				},
 			}],
 		],
