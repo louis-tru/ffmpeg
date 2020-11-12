@@ -5,38 +5,38 @@
 		'ar%': 'ar',
 		'ranlib%': 'ranlib',
 		'library%': 'static_library',
-		'ff_install_dir':  '<(output)/obj.target/FFmpeg',
-		'ff_product_path%': '<(ff_install_dir)/libFFmpeg.a',
+		'ff_install_dir':  '<(output)/obj.target/ffmpeg',
+		'ff_product_path%': '<(ff_install_dir)/libffmpeg.a',
 		'ff_openssl_gyp%': '../../depe/node/deps/openssl/openssl.gyp',
 		'ff_zlib_gyp%': '../../depe/node/deps/zlib/zlib.gyp',
-		'ff_build_sh%': '../../tools/build_FFmpeg.sh',
+		'ff_build_sh%': '../../tools/build_ffmpeg.sh',
 	},
 	'targets': [
 	{
-		'target_name': 'FFmpeg_compile',
+		'target_name': 'ffmpeg_compile',
 		'type': 'none',
 		'actions': [{
-			'action_name': 'FFmpeg_compile',
+			'action_name': 'ffmpeg_compile',
 			'inputs': [ 'RELEASE', 'config.h' ],
 			'outputs': [ '<(ff_product_path)' ],
 			'conditions': [
 				['media==1', {
-					'action': [ 'sh', '-c', 
-						'export PATH=<(tools):<(bin):\"${PATH}\";'
-						'export INSTALL_DIR=<(ff_install_dir);'
-						'export PRODUCT_PATH=<(ff_product_path);'
-						'export AR=<(ar);'
-						'export RANLIB=<(ranlib);'
-						'sh <(ff_build_sh)'
+					'action': [
+						'<(ff_build_sh)',
+						'<(bin)',
+						'<(ff_install_dir)',
+						'<(ff_product_path)',
+						'<(ar)',
+						'<(ranlib)',
 					],
 				}, {
-					'action': ['echo', 'skip FFmpeg compile'],
+					'action': ['echo', 'skip ffmpeg compile'],
 				}]
 			],
 		}],
 	},
 	{
-		'target_name': 'FFmpeg',
+		'target_name': 'ffmpeg',
 		'type': 'none',
 		'direct_dependent_settings': {
 			'include_dirs': [ '<(ff_install_dir)/include' ],
@@ -45,7 +45,7 @@
 		'dependencies': [
 			# '<(ff_openssl_gyp):openssl',
 			# '<(ff_zlib_gyp):zlib',
-			'FFmpeg_compile',
+			'ffmpeg_compile',
 		],
 		'sources': [
 			'libavutil/avutil.h',
