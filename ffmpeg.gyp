@@ -7,8 +7,8 @@
 		'library%': 'static_library',
 		'ff_install_dir':  '<(output)/obj.target/ffmpeg',
 		'ff_product_path%': '<(ff_install_dir)/libffmpeg.a',
-		'ff_openssl_gyp%': '../../depe/node/deps/openssl/openssl.gyp',
-		'ff_zlib_gyp%': '../../depe/node/deps/zlib/zlib.gyp',
+		'ff_openssl_gyp%': '../../deps/node/deps/openssl/openssl.gyp',
+		'ff_zlib_gyp%': '../../deps/node/deps/zlib/zlib.gyp',
 		'ff_build_sh%': '../../tools/build_ffmpeg.sh',
 	},
 	'targets': [
