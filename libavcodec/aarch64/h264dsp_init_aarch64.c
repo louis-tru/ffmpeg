@@ -69,6 +69,34 @@ void ff_h264_idct8_add4_neon(uint8_t *dst, const int *block_offset,
                              int16_t *block, int stride,
                              const uint8_t nnzc[6*8]);
 
+
+// convert the param type ptrdiff_t to int type
+void ff_weight_h264_pixels_16_neon_(uint8_t *a, ptrdiff_t b, int c, int d, int e, int f);
+void ff_weight_h264_pixels_8_neon_(uint8_t *a, ptrdiff_t b, int c, int d, int e, int f);
+void ff_weight_h264_pixels_4_neon_(uint8_t *a, ptrdiff_t b, int c, int d, int e, int f);
+void ff_biweight_h264_pixels_16_neon_(uint8_t *a, uint8_t *b, ptrdiff_t c, int d, int e, int f, int g, int h);
+void ff_biweight_h264_pixels_8_neon_(uint8_t *a, uint8_t *b, ptrdiff_t c, int d, int e, int f, int g, int h);
+void ff_biweight_h264_pixels_4_neon_(uint8_t *a, uint8_t *b, ptrdiff_t c, int d, int e, int f, int g, int h);
+
+void ff_weight_h264_pixels_16_neon_(uint8_t *a, ptrdiff_t b, int c, int d, int e, int f) {
+    ff_weight_h264_pixels_16_neon(a,b,c,d,e,f);
+}
+void ff_weight_h264_pixels_8_neon_(uint8_t *a, ptrdiff_t b, int c, int d, int e, int f) {
+    ff_weight_h264_pixels_8_neon(a,b,c,d,e,f);
+}
+void ff_weight_h264_pixels_4_neon_(uint8_t *a, ptrdiff_t b, int c, int d, int e, int f) {
+    ff_weight_h264_pixels_4_neon(a,b,c,d,e,f);
+}
+void ff_biweight_h264_pixels_16_neon_(uint8_t *a, uint8_t *b, ptrdiff_t c, int d, int e, int f, int g, int h) {
+    ff_biweight_h264_pixels_16_neon(a,b,c,d,e,f,g,h);
+}
+void ff_biweight_h264_pixels_8_neon_(uint8_t *a, uint8_t *b, ptrdiff_t c, int d, int e, int f, int g, int h) {
+    ff_biweight_h264_pixels_8_neon(a,b,c,d,e,f,g,h);
+}
+void ff_biweight_h264_pixels_4_neon_(uint8_t *a, uint8_t *b, ptrdiff_t c, int d, int e, int f, int g, int h) {
+    ff_biweight_h264_pixels_4_neon(a,b,c,d,e,f,g,h);
+}
+
 av_cold void ff_h264dsp_init_aarch64(H264DSPContext *c, const int bit_depth,
                                      const int chroma_format_idc)
 {
@@ -81,13 +109,13 @@ av_cold void ff_h264dsp_init_aarch64(H264DSPContext *c, const int bit_depth,
         if (chroma_format_idc <= 1)
         c->h264_h_loop_filter_chroma = ff_h264_h_loop_filter_chroma_neon;
 
-        c->weight_h264_pixels_tab[0] = ff_weight_h264_pixels_16_neon;
-        c->weight_h264_pixels_tab[1] = ff_weight_h264_pixels_8_neon;
-        c->weight_h264_pixels_tab[2] = ff_weight_h264_pixels_4_neon;
+        c->weight_h264_pixels_tab[0] = ff_weight_h264_pixels_16_neon_;
+        c->weight_h264_pixels_tab[1] = ff_weight_h264_pixels_8_neon_;
+        c->weight_h264_pixels_tab[2] = ff_weight_h264_pixels_4_neon_;
 
-        c->biweight_h264_pixels_tab[0] = ff_biweight_h264_pixels_16_neon;
-        c->biweight_h264_pixels_tab[1] = ff_biweight_h264_pixels_8_neon;
-        c->biweight_h264_pixels_tab[2] = ff_biweight_h264_pixels_4_neon;
+        c->biweight_h264_pixels_tab[0] = ff_biweight_h264_pixels_16_neon_;
+        c->biweight_h264_pixels_tab[1] = ff_biweight_h264_pixels_8_neon_;
+        c->biweight_h264_pixels_tab[2] = ff_biweight_h264_pixels_4_neon_;
 
         c->h264_idct_add        = ff_h264_idct_add_neon;
         c->h264_idct_dc_add     = ff_h264_idct_dc_add_neon;

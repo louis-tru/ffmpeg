@@ -10,6 +10,7 @@
 		'ff_openssl_gyp%': '../../deps/openssl/openssl.gyp',
 		'ff_zlib_gyp%': '../../deps/zlib/zlib.gyp',
 		'ff_build_sh%': '../../tools/build_ffmpeg.sh',
+		'V%': 0,
 	},
 	'targets': [
 	{
@@ -28,6 +29,7 @@
 						'<(ff_product_path)',
 						'<(ar)',
 						'<(ranlib)',
+						'<(V)',
 					],
 				}, {
 					'action': ['echo', 'skip ffmpeg compile'],
