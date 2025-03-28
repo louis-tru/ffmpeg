@@ -61,7 +61,7 @@
 			]
 		},
 		'conditions': [
-			['os in "ios osx"', {
+			['os in "mac ios"', {
 				'link_settings': {
 					'libraries': [
 						'$(SDKROOT)/System/Library/Frameworks/AudioToolbox.framework',
